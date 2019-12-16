@@ -1,2 +1,4 @@
 */*.out
 */program
+*/bin
+.vscode/
