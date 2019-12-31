@@ -65,10 +65,10 @@ char extract(char y, char adder)
     int x1 = (int)(strchr(supported, y) - supported); //substract pointer to index from pointer to char
     int adder1 = (int)(strchr(supported, adder) - supported);
 
-    x1 = x1 - adder1;
+    x1 = x1 + 51 - adder1;
 
-    if (x1 < 0)
-        x1 = x1 + 51;
+    if (x1 > 51)
+        x1 = x1 - 51;
     return supported[x1];
 }
 

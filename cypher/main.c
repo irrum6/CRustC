@@ -24,7 +24,6 @@ int main()
             printf("short, type again\n");
             continue;
         }
-        printf("%s\n", command);
         actOnCommand(command);
     }
     return 0;
