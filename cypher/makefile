@@ -1,8 +1,8 @@
 .DEFAULT_GOAL: build
 build:
-	gcc main.c read.c -std=c11 -o ./bin/program
+	gcc main.c read.c cypher.c -std=c11 -o ./bin/program
 build_debug:
-	gcc main.c read.c -std=c11 -g -o ./bin/debug.out
+	gcc main.c read.c cypher.c -std=c11 -g -o ./bin/debug.out
 clean:
 	rm -f ./bin/program
 	rm -f ./bin/debug.out
