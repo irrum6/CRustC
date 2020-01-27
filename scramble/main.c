@@ -19,9 +19,6 @@ int main()
     int read2 = readWordsIntoList(fullList, FILENAME2);
 
     // printList(sWords, read);
-    // printf("---A---\n");
-    // printList(fullList, read);
-    // printf("---A---\n");
 
     for (int i = 0; i < read; i++)
     {
@@ -107,5 +104,10 @@ int isUnScrambled(char *a, char *b)
     strcpy(d, b);
     sortCharsInString(c);
     sortCharsInString(d);
-    return strncmp(c, d, n1);
+
+    int r = strncmp(c, d, n1);
+
+    free(c);
+    free(d);
+    return r;
 }
