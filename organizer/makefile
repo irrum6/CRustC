@@ -8,5 +8,7 @@ clean:
 	rm -f ./bin/debug.out
 run:
 	./bin/program
+runbb:
+	./bin/program bb
 debug:
 	gdb ./bin/debug.out
