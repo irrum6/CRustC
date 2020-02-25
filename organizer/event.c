@@ -136,7 +136,7 @@ void editEvent(event *events, long index, time_t time, char *msg, char *msg2)
     printf("type description max %d characters\n", MAX_DESC_LEN);
     stdReadLine(3, MAX_DESC_LEN, desc);
 
-    events[index].namelen = strlen(desc);
+    events[index].namelen = strlen(name);
     events[index].name = name;
     events[index].desclen = strlen(desc);
     events[index].desc = desc;
@@ -196,6 +196,15 @@ void readFromFile(const char *restrict fn, event *events, long count)
 {
     const char *READ_BINARY = "rb";
     FILE *fp = fopen(fn, READ_BINARY);
+    int fh = checkFileHeader(fp);
+    if (fh != 0)
+    {
+        fclose(fp);
+        return;
+    }
+    //read size and discard;
+    long _size;
+    fread(&_size, sizeof(long), 1, fp);
     for (long i = 0; i < count; i++)
     {
         readRecordFromfile(events, i, fp);
@@ -226,6 +235,7 @@ void readRecordFromfile(event *events, long index, FILE *fp)
 
     char *desc = malloc(sizeof(char) * dlen);
     fread(desc, sizeof(char), dlen, fp);
+
     events[index].name = name;
     events[index].desc = desc;
     events[index].time = cal;
