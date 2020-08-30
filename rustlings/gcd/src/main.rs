@@ -43,6 +43,32 @@ fn bgcd(a:u32, b :u32)->u32{
         return bgcd(a, (b-a) >> 1);
     }
 }
+// iterative binary gcd
+fn bgcd_it(mut a:u32,mut b:u32)->u32{
+    use std::cmp::min;
+    use std::mem::swap;
+    if a == 0 { return b }
+    if b == 0 { return a }
+
+    let i:u32= a.trailing_zeros();
+    let j:u32= b.trailing_zeros();
+    let k:u32= min(i,j);
+
+    a >>= i;b >>= j;
+
+    // both odd
+    loop{
+        if a > b {
+            swap(&mut a, &mut b);
+        }
+        b= b - a;
+        if b == 0 {
+            break;
+        }
+        b >>= b.trailing_zeros();
+    }
+    return a<<k;
+}
 
 fn test_legcd()->bool{
     let primes:[u32;10] =  [2, 3, 5, 7, 11, 13, 17, 19, 23, 29];
@@ -62,17 +88,18 @@ fn test_legcd()->bool{
     return true;
 }
 
-fn test_bgcd()->bool{
+fn test_bgcd(m:u32)->bool{
     let primes:[u32;10] =  [2, 3, 5, 7, 11, 13, 17, 19, 23, 29];
     for p in primes.iter(){
         for q in primes.iter(){
             if p==q{
                 continue;
             }
-            let n1:u32 = p * q;
-            let n2:u32 = q * q;
-            // println!("{},{},{},{},{}",p,q,n1,n2,legcd(n1,n2));
-            if bgcd(n1,n2) != *q {
+            let n1 = p * q;
+            let n2 = q * q;
+            let mut result = bgcd(n1,n2);
+            if m==1 {result = bgcd_it(n1,n2) }
+            if result != *q {
                 return false;
             }
         }
@@ -82,22 +109,29 @@ fn test_bgcd()->bool{
 fn main() {
     let args: Vec<String> = env::args().collect();
 
-    if args.len() < 3 {
+    if args.len() < 2 {
         println!("pass enough parameters to calculate");
         return;
-    }
+    }    
     let failure:String = String::from("The test has failed");
-        let sucess:String = String::from("The test run sucessfully");
+    let sucess:String = String::from("The test run sucessfully");
     if args[1] == "test"{        
         // println!("{}",test_legcd()?sucess:failure);
         if test_legcd() {println!("{}",sucess);} else {println!("{}",failure);}
-    }else if args[1] == "testb"{
-        if test_bgcd() {println!("{}",sucess);} else {println!("{}",failure);}
     }
-    else{
-        let fst:u32 = args[1].trim().parse().expect("type a number");
-        let snd:u32 = args[2].trim().parse().expect("type a number");
-        println!("Greatest common divisor of {} and {} divisor is {}",fst,snd,legcd(fst,snd));
+    if args[1] == "testb"{
+        if test_bgcd(0) {println!("{}",sucess);} else {println!("{}",failure);}
+    }
+    if args[1] == "testbit"{
+        if test_bgcd(0) {println!("{}",sucess);} else {println!("{}",failure);}
+    }
+    
+    if args.len() > 3 {
+        if args[1]=="bin" {
+            let fst:u32 = args[2].trim().parse().expect("type a number");
+            let snd:u32 = args[3].trim().parse().expect("type a number");
+            println!("Greatest common divisor of {} and {} divisor is {}",fst,snd,bgcd(fst,snd));
+        }        
     }
     // println!("{}",4>>1);    
 }
