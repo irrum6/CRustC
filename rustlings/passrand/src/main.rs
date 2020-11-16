@@ -59,7 +59,7 @@ fn main() {
             let n_us = usize::try_from(index).unwrap();
             print!("{}", charski[n_us]);
         }
-        print!("\n");
+        print!(":{}\n",_i);
     }
 
 }
