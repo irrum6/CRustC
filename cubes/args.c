@@ -1,17 +1,11 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-struct _result
-{
-    int errors;
-    int result;
-};
+#include "args.h"
 
-typedef struct _result result;
-
-result *calculate(char op, int a, int b)
+Result* calculate(char op, int a, int b)
 {
-    result *res = (result *)malloc(sizeof(result));
+    Result* res = (Result*) malloc(sizeof(Result));
     res->errors = 0;
     res->result = 0;
 
@@ -36,8 +30,7 @@ result *calculate(char op, int a, int b)
     return res;
 }
 
-int main(int argc, char **argv)
-{
+int run_args(int argc, char **argv){
     int i = 0;
 
     printf("all param count : %d\n", argc);
@@ -52,7 +45,7 @@ int main(int argc, char **argv)
     int a = atoi(argv[1]);
     int b = atoi(argv[3]);
 
-    result *rs = calculate(op, a, b);
+    Result *rs = calculate(op, a, b);
 
     printf("expression was :%s%s%s \n", argv[1], argv[2], argv[3]);
 
