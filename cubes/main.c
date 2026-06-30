@@ -6,6 +6,7 @@
 int main(int argc, char **argv)
 {
     //run_cubes();
+    //run_args(argc, argv);
 
-    run_args(argc, argv);
+    run_gcd();
 }
