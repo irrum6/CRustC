@@ -8,14 +8,32 @@ short is_exit(char s[])
     return (s[0] == 'e' && s[1] == 'x' && s[2] == 'i' && s[3] == 't') ? 1 : 0;
     //return (0==strcmp(s,"exit"))?1:0;
 }
-bool is_palindrome(char word[], short len);
 
-int main()
+bool is_palindrome(char word[], short len)
+{
+    //short iterator
+    short i = 0;
+    i = 0;
+    while (i < len - 1)
+    {
+        i++;
+        if (word[i] != word[len - 1 - i])
+        {
+            return false;
+        }
+    }
+    return true;
+}
+
+void run_palindrome()
 {
     short str_size = 20;
     char str[str_size];
     //short iterato
     short i = 0;
+
+    printf("Type exit to exit \n");
+
     while (true)
     {
         printf("Type word , max %d characters\n", str_size);
@@ -35,21 +53,6 @@ int main()
             printf("Not a palindrome\n");
         }
     }
-    return 0;
+
 }
 
-bool is_palindrome(char word[], short len)
-{
-    //short iterator
-    short i = 0;
-    i = 0;
-    while (i < len - 1)
-    {
-        i++;
-        if (word[i] != word[len - 1 - i])
-        {
-            return false;
-        }
-    }
-    return true;
-}

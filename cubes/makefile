@@ -1,6 +1,6 @@
 .DEFAULT_GOAL: build
 build:
-	gcc main.c cubes.c args.c -std=c11 -o ./bin/program
+	gcc main.c cubes.c args.c palin.c -std=c11 -o ./bin/program
 build_debug:
 	gcc main.c -std=c11 -g -o ./bin/debug.out
 clean:
