@@ -110,3 +110,49 @@ fn foot_meter(count: f32, reverse: bool) -> f32 {
     }
     return count * 0.3048;
 }
+//------------------------------------------
+//beercount
+fn count_beer(mut n:u32){
+    loop{
+        if n<1 {
+            println!("No more bottles of beer on the wall, no more bottles of beer.");
+            println!(" We've taken them down and passed them around; now we're drunk and passed out!");
+            break; 
+        }
+        println!("{} bottles of beer on the wall, {} bottles of beer.",n,n);
+        n=n-1;
+        println!("Take one down, pass it around, {} bottles of beer on the wall...",n);
+    }
+}
+
+fn count_green_bottles(mut n:u32){
+    loop{
+        println!("{} green bottles standing on the wall,",n);
+        println!("{} green bottles standing on the wall,",n);
+        println!("And if one green bottle should accidentally fall,");
+        n = n-1;
+        if n<1 {
+            println!("There'll be no green bottles hanging on the wall. ");
+            break;
+        }
+        println!("There'll be {} green bottles hanging on the wall. ",n);
+    }
+}
+
+//------------------------------------------
+//
+// fn fibonaci_recurse(n:u32)->u32{
+//     if n<3 {return 1;}
+//     return fibonaci_recurse(n-1)+fibonaci_recurse(n-2);
+// }
+
+fn fibonaci_iter(n:u32)->u32{
+    if n<3 {return 1;}
+    let mut a:u32=1;
+    let mut b:u32=1;
+    for _i in 1..n {
+        a = a + b;
+        b = a - b;
+    }
+    return a;
+}

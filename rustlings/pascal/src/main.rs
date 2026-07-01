@@ -1,7 +1,5 @@
-use std::env;
-
 fn main() {
-    let args: Vec<String> = env::args().collect();
+    let args: Vec<String> = std::env::args().collect();
 
     if args.len() < 3 {
         println!("== ERROR :  Not Enough parameters were passed ==");
@@ -38,10 +36,10 @@ fn main() {
     }
 
     if number2 > 0 && number2 < number1 {
-        println!("pascal number at row {} column {} is {}",number1,number2,tri[number2-1]);
+        println!("pascal number at row {} and column {} is {}",number1,number2,tri[number2-1]);
     }
     if number2 < 1 || number2 ==number1{
-        println!("pascal number at row {} column {} is {}",number1,number2,1);
+        println!("pascal number at row {} and column {} is {}",number1,number2,1);
     }
    
 
