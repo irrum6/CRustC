@@ -1,6 +1,3 @@
-// challenge 71 easy
-use std::env;
-
 fn triples(n:u32){
      //a+b+c <=total
     //if c=0 a<=b <total/2
@@ -28,7 +25,7 @@ fn triples2(n:u32){
 }
 
 fn main() {
-    let args: Vec<String> = env::args().collect();
+    let args: Vec<String> = std::env::args().collect();
 
     if args.len() < 2 {
         println!("pass enough parameters to calculate");

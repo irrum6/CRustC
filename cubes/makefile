@@ -10,3 +10,4 @@ run:
 	./bin/program
 debug:
 	gdb ./bin/debug.out
+fast: clean build run
