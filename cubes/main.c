@@ -11,5 +11,7 @@ int main(int argc, char **argv)
 
     //run_gcd();
 
-    run_palindrome();
+    //run_palindrome();
+    
+    run_piglatin();
 }
